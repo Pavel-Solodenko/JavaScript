@@ -1,9 +1,10 @@
 let answer, inputFileContent, quizMap, curQuestion;
 
 const inputFileElement = document.getElementById('inputFile');
-const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1) + min); 
 
-const RESET_TIME = 4000;    //clear form
+const CLEAR_FORM = 5000, WAIT_FILE = 5000, WAIT_ANSWER = 3000;
+
+const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1) + min); 
 
 const parseFileQuestionsAndAnswers = function (str) {
     let result = new Map();
@@ -51,6 +52,12 @@ function changeViewToMenu() {
     
     parentElement.appendChild(element);
     parentElement.insertBefore(element, document.getElementById('mainScript')).setAttribute('id','messageContainer');
+
+    // element = document.createElement('div');
+    // parentElement.appendChild(element);
+    // parentElement.insertBefore(element, document.getElementById('mainScript')).setAttribute('id','controlContainer')
+    // element.appendChild(document.createElement('button')).setAttribute('id','nextQuestionBtn');
+    // document.getElementById('nextQuestionBtn').innerHTML = 'Next question'; 
 }
 
 function displayQuestionWithAnswers(question, answers) {
@@ -61,7 +68,8 @@ function displayQuestionWithAnswers(question, answers) {
     
     for (const answer of answers) {
 
-        answersContainerElement.appendChild(document.createElement('button')).appendChild(document.createTextNode(answer.replace('<correct>','')));
+        answersContainerElement.appendChild(document.createElement('button')).setAttribute('class', 'answerBtn');
+        document.getElementById('answersContainer').lastChild.innerHTML = answer.replace('<correct>','');
 
     }
 
@@ -85,10 +93,9 @@ function checkValueInArr(value,arr) {
 
 function buttonsListner(e) {
     answer = e.target.childNodes[0].nodeValue;
-    console.log(answer);
 }
 
-function waitForAnswer(milisecond) {
+/* function waitForAnswer(milisecond) {
 
     let timerID = setInterval(function () {
     if (answer === undefined) console.log('waiting for answer');
@@ -98,17 +105,19 @@ function waitForAnswer(milisecond) {
     };
     }, milisecond)
 
-}
+} */
 
-function createMessageOnPage(text) {
+function createMessageOnPage(text, color) {
 
-    document.getElementById('messageContainer').appendChild(document.createElement('h1')).appendChild(document.createTextNode(text));
-    
+    let msgContainer = document.getElementById('messageContainer');
+
+    msgContainer.appendChild(document.createElement('h1')).appendChild(document.createTextNode(text));
+    msgContainer.lastChild.style.color = color;
 }
 
 function afterAnswer() {
-    if (checkAnswer(curQuestion)) createMessageOnPage('correct answer');
-    else createMessageOnPage('incorrect answer');   
+    if (checkAnswer(curQuestion)) createMessageOnPage('correct answer', 'green');
+    else createMessageOnPage('incorrect answer', 'red');   
 }
 
 function checkAnswer (question) {
@@ -129,13 +138,13 @@ async function questionAndAnswersController()  {
 
             document.getElementById('answersContainer').addEventListener('click', buttonsListner);
 
-            while(answer === undefined) {await sleep(5000);};
+            while(answer === undefined) {await sleep(WAIT_ANSWER);};
 
             document.getElementById('answersContainer').removeEventListener('click',buttonsListner);
         
             afterAnswer();
 
-            await sleep(RESET_TIME);
+            await sleep(CLEAR_FORM);
             //in furure will be button 'next question'
             resetQuestionForm();
 
@@ -144,7 +153,7 @@ async function questionAndAnswersController()  {
         
     }
 
-    createMessageOnPage('quiz have been finished');
+    // createMessageOnPage('quiz have been finished');
 }
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -159,8 +168,5 @@ let timerID = setInterval(function () {
         changeViewToMenu();
 
         questionAndAnswersController(quizMap);
-
-        console.log(quizMap);
-        console.dir(document);
     }
-},5000);
+}, WAIT_FILE);
