@@ -1,3 +1,5 @@
-Question1: Answer1, Answer2<correct>, Answer3, Answer4
-Question2: Answer1<correct>, Answer2
-Question3: Answer1<correct>
+Which operator does NOT exist in JavaScript?: ??, sizeof<correct>, ?, !==
+Identificators in JavaScript can NOT start with ...?: _, letters, $, digit<correct>
+Which one of the following data types is primitive in JavaScript?: Symbol<correct>, Array, regular expression, WeakMap, Set, long
+Which of the following variant is an objective data type in JavaScript?: String, LinkedList, null, function<correct>, undefined, Double
+What will be the result of "  typeof function() {}  " ?: object, null, function<correct>, error, undefined
