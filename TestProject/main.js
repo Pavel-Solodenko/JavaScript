@@ -53,11 +53,11 @@ function changeViewToMenu() {
     parentElement.appendChild(element);
     parentElement.insertBefore(element, document.getElementById('mainScript')).setAttribute('id','messageContainer');
 
-    // element = document.createElement('div');
-    // parentElement.appendChild(element);
-    // parentElement.insertBefore(element, document.getElementById('mainScript')).setAttribute('id','controlContainer')
-    // element.appendChild(document.createElement('button')).setAttribute('id','nextQuestionBtn');
-    // document.getElementById('nextQuestionBtn').innerHTML = 'Next question'; 
+    element = document.createElement('div');
+    parentElement.appendChild(element);
+    parentElement.insertBefore(element, document.getElementById('mainScript')).setAttribute('id','controlContainer')
+    element.appendChild(document.createElement('button')).setAttribute('id','nextQuestionBtn');
+    document.getElementById('nextQuestionBtn').innerHTML = 'Next question'; 
 }
 
 function displayQuestionWithAnswers(question, answers) {
