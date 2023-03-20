@@ -1,0 +1,230 @@
+.slides {
+    list-style-type: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10%;
+    top: 10%;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+}
+
+.controls {
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    width: 100vw;
+}
+
+.controls div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    padding: 0;
+}
+
+.controls__item.controls__pause {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.controls__item.controls__prev {
+    position: absolute;
+    width: 5%;
+    height: 100%;
+    left: 0;
+    top: 50%;
+    transform: translate(0,-50%);
+    cursor: pointer;
+}
+
+.controls__item.controls__next {
+    position: absolute;
+    width: 5%;
+    height: 100%;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: pointer;
+}
+
+.controls__item.controls__prev:hover {
+    color: lightgray;
+    background: linear-gradient(to right, rgba(173, 255, 47, 0.8), rgba(0, 0, 0, 0));
+    text-shadow: 0 0 20px black ;
+}
+
+.controls__item.controls__next:hover {
+    color: lightgray;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(173, 255, 47, 0.8));
+    text-shadow: 0 0 20px black ;
+}
+
+.controls div i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 50px;
+    height: 50px;
+    
+    padding: 0;
+}
+
+.fas.fa-pause, .fas.fa-play {
+    border: solid 5px white;
+    width: 10vw;
+    height: 20vh;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out 0.2s;
+}
+
+.fas.fa-chevron-right, .fas.fa-chevron-left {    
+    color: chocolate;
+}
+
+.fas.fa-pause:hover,.fas.fa-play:hover {
+    opacity: 1;
+    text-shadow: 0 0 20px black ;
+}
+
+.indicators {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    bottom: 10%;
+    transform: translate(0%, -10%);
+    display: flex;
+    justify-content: center;
+    column-gap: 40px;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+}
+
+.indicators__item {
+    width: 30px;
+    height: 15px;
+    border-radius: 20px 20px / 20px 20px;
+    border: 3px solid white;
+    cursor: pointer;
+}
+
+.indicators__item:hover {
+    background-color: lightgoldenrodyellow;
+}
+
+.indicators__item.active {
+    cursor: not-allowed;
+    border: #00bbbb 2px solid;
+    box-shadow: 0 0 20px white;
+}
+
+.slides__item {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.slides__item.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.slides__item {
+    font-size: 40px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: #333;
+}
+
+/* .slides__item:nth-of-type(1) {
+    background: red;
+}
+
+.slides__item:nth-of-type(2) {
+    background: orange;
+}
+
+.slides__item:nth-of-type(3) {
+    background: green;
+}
+
+.slides__item:nth-of-type(4) {
+    background: blue;
+}
+
+.slides__item:nth-of-type(5) {
+    background: purple;
+} */
+
+.slide-button {
+    position: absolute;
+    left: 50%;
+    bottom: 15%;
+    transform: translate(-50%, -15%);
+
+    font-size: 30pt;
+    font-family: 'Alegreya Sans SC';
+    text-decoration: none;
+
+    color: white !important;
+    user-select: none;
+    opacity: 0;
+}
+
+.slides__item.active a {
+    opacity: 1;
+    z-index: 1;
+}
+
+@keyframes typing {
+    0%  {content: "";}
+    10% {content: "L"; color: rgba(255, 60, 60, 0.7);}
+    20% {content: "Le"; color: rgba(255, 60, 60, 0.7);}
+    30% {content: "Lea"; color: rgba(255, 60, 60, 0.7);}
+    40% {content: "Lear"; color: rgba(255, 60, 60, 0.7);}
+    50% {content: "Learn"; color: rgba(255, 60, 60, 0.7);}
+    60% {content: "Learn n"; color: yellow;}
+    70% {content: "Learn no"; color: yellow;}
+    80% {content: "Learn now"; color: yellow;}
+    90% {content: "Learn now!";}
+}
+
+.slides__item.active a::before {
+    content: "";
+    animation: typing 7s infinite;
+}
+
+.slides__item.active {
+    --caret: orange;
+}
+
+.slides__item.active a::after {
+    content: "";
+    border-right: 1px solid var(--caret);
+    animation: blink 0.5s linear infinite;
+  }
+
+.bg-video {
+    object-fit: cover;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+}
