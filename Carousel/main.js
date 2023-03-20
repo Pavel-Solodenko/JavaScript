@@ -7,6 +7,12 @@ function createCarousel(slidesCount = 5, rotateInterval = 7000) {
     let slidesListLive;
     let indicatorsListLive;
     let isPlay;
+    let startPosX;
+    let endPosX;
+
+    const CODE_SPACE = 'Space';
+    const CODE_ARROW_LEFT = 'ArrowLeft';
+    const CODE_ARROW_RIGHT = 'ArrowRight';
 
     const ROTATE_INTERVAL = rotateInterval;
     const carouselElement = document.getElementById('carousel');
@@ -145,7 +151,7 @@ function createCarousel(slidesCount = 5, rotateInterval = 7000) {
             showCurrentSlide(currentIndex);
             currentIndex++;
         }
-        
+        isPlay = true;
         timerID = setInterval(function () {
             // setTimeout(disableNextPreviousButtons, ROTATE_INTERVAL - 250);
             
@@ -155,7 +161,7 @@ function createCarousel(slidesCount = 5, rotateInterval = 7000) {
             
             currentIndex = calculateCurrentIndex();
 
-            isPlay = true;
+            // isPlay = true;
             
             // setTimeout(enableNextPreviousButtons, 1000);
         }, ROTATE_INTERVAL);
@@ -174,7 +180,7 @@ function createCarousel(slidesCount = 5, rotateInterval = 7000) {
     }
 
     function playHandler(e) {
-
+        
         const element = e.target;
         element.setAttribute('class', pauseBtnClass);
 
@@ -230,15 +236,44 @@ function createCarousel(slidesCount = 5, rotateInterval = 7000) {
 
     }
 
+    function pressKeyhandler(e) {
+        if (e.code === CODE_ARROW_LEFT) {
+            prevSlideButtonHandler();
+        };
+        if (e.code === CODE_ARROW_RIGHT) {
+            nextSlideButtonHandler();
+        };
+        if (e.code === CODE_SPACE) {
+            if (isPlay !== true) playHandler({target: document.getElementsByClassName(playBtnClass)[0]});
+            else pauseHandler({target: document.getElementsByClassName(pauseBtnClass)[0]});
+        }; 
+    }
+
+    function swipeStartHandler(e) {
+        startPosX = (e instanceof MouseEvent) ? e.pageX : e.changedTouches[0].pageX;
+    }
+
+    function swipeEndHandler(e) {
+        endPosX = (e instanceof MouseEvent) ? e.pageX : e.changedTouches[0].pageX;
+
+        if (endPosX - startPosX > 200) prevSlideButtonHandler();
+        if (endPosX - startPosX < -200) nextSlideButtonHandler();
+    }
+
     function initEventlistners() {
 
         document.getElementsByClassName([...containersMap.values()][1])[0].addEventListener('click', indicatorsHandler);
-
         document.getElementsByClassName(pauseBtnClass)[0].addEventListener('click', pauseHandler);
-
         document.getElementsByClassName(controlsContainersClasses[1])[0].addEventListener('click', nextSlideButtonHandler);
-
         document.getElementsByClassName(controlsContainersClasses[0])[0].addEventListener('click', prevSlideButtonHandler);
+
+        document.addEventListener('keydown', pressKeyhandler);
+
+        document.getElementsByClassName([...containersMap.values()][0])[0].addEventListener('touchstart', swipeStartHandler);
+        document.getElementsByClassName([...containersMap.values()][0])[0].addEventListener('touchend', swipeEndHandler);
+
+        document.getElementsByClassName([...containersMap.values()][0])[0].addEventListener('mousedown', swipeStartHandler);
+        document.getElementsByClassName([...containersMap.values()][0])[0].addEventListener('mouseup', swipeEndHandler);
     }
 
     initCarousel();
