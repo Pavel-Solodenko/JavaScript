@@ -73,7 +73,7 @@ function createCarousel(slidesCount = 5, rotateInterval = 7000) {
             let slideElement = slidesContainer.appendChild(document.createElement('li'));
 
             slideElement.setAttribute('class', slideClass);
-            slideElement.setAttribute('style', `background-image: url(assets/img/${imageNames + i}.png)`);
+            slideElement.setAttribute('style', `background-image: url(../assets/img/${imageNames + i}.png)`);
             
             slideElement.innerHTML = `<a href="${linksArray[i - 1]}" class="slide-button" target="_blank"></a>`;
         }

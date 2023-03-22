@@ -228,3 +228,10 @@
     top: 0;
     left: 0;
 }
+
+.func-approach-btn {
+    background-color: aqua;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+}
