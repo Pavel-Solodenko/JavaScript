@@ -1,4 +1,4 @@
 import KeysCarousel from './carousel-keys.js'
 
-const carousel = new KeysCarousel(3000,false);
+const carousel = new KeysCarousel();
 carousel.init();

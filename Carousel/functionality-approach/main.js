@@ -286,4 +286,4 @@ function createCarousel(slidesCount = 5, rotateInterval = 7000) {
 }
 
 
-createCarousel(5);
+createCarousel();

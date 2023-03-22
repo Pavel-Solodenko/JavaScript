@@ -1,2 +1,2 @@
-const carousel = new KeysCarousel(3000);
+const carousel = new KeysCarousel();
 carousel.init();
