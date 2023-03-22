@@ -237,6 +237,8 @@ function createCarousel(slidesCount = 5, rotateInterval = 7000) {
     }
 
     function pressKeyhandler(e) {
+        e.preventDefault();
+
         if (e.code === CODE_ARROW_LEFT) {
             prevSlideButtonHandler();
         };

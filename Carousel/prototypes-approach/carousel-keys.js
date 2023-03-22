@@ -11,12 +11,13 @@ KeysCarousel.prototype._initProperties = function () {
 }
 
 KeysCarousel.prototype._pressKeyhandler = function(e) {
+    e.preventDefault();
+
     if (e.code === this.CODE_ARROW_LEFT) {
         this.prev();
     };
     if (e.code === this.CODE_ARROW_RIGHT) {
-        this.next
-();
+        this.next();
     };
     if (e.code === this.CODE_SPACE) {
         if (this.isPlay !== true) this.play({target: document.getElementsByClassName(this.playBtnClass)[0]});
