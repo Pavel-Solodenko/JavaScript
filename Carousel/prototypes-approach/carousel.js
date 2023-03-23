@@ -25,7 +25,8 @@ Carousel.prototype._initProperties = function () {
     this.nextSlideButtonHandlerWithThis = this.next.bind(this);
     this.prevSlideButtonHandlerWithThis = this.prev.bind(this);
     this.indicatorsHandlerWithThis = this._indicatorsHandler.bind(this);
-    
+    this.mouseEnterHandlerWithThis = this._mouseEnterHandler.bind(this);
+    this.mouseLeaveHandlerWithThis = this._mouseLeaveHandler.bind(this);
 }
 
 Carousel.prototype._showCurrentSlide = function () {
@@ -107,13 +108,22 @@ Carousel.prototype._indicatorsHandler = function (e) {
     if (target.className === this.indicatorsClass) this._changeSlideOnPauseOrNot(undefined, target);
 }
 
+Carousel.prototype._mouseEnterHandler = function () {
+    this.pause({target: document.getElementsByClassName(this.pauseBtnClass)[0]});
+}
+
+Carousel.prototype._mouseLeaveHandler = function () {
+    this.play({target: document.getElementsByClassName(this.playBtnClass)[0]});
+}
+
 Carousel.prototype._initEventlistners = function() {
 
     document.getElementsByClassName([...this.containersMap.values()][1])[0].addEventListener('click', this.indicatorsHandlerWithThis);
     document.getElementsByClassName(this.pauseBtnClass)[0].addEventListener('click', this.pauseHandlerWithThis);
     document.getElementsByClassName(this.controlsContainersClasses[1])[0].addEventListener('click', this.nextSlideButtonHandlerWithThis);
     document.getElementsByClassName(this.controlsContainersClasses[0])[0].addEventListener('click', this.prevSlideButtonHandlerWithThis);
-
+    document.getElementsByClassName([...this.containersMap.values()][0])[0].addEventListener('mouseenter', this.mouseEnterHandlerWithThis);
+    document.getElementsByClassName([...this.containersMap.values()][0])[0].addEventListener('mouseleave', this.mouseLeaveHandlerWithThis);
 }
 
 Carousel.prototype.init = function () {

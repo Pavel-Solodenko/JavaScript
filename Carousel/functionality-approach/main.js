@@ -262,6 +262,14 @@ function createCarousel(slidesCount = 5, rotateInterval = 7000) {
         if (endPosX - startPosX < -200) nextSlideButtonHandler();
     }
 
+    function mouseEnterHandler() {
+        pauseHandler({target: document.getElementsByClassName(pauseBtnClass)[0]});
+    }
+
+    function mouseLeaveHandler() {
+        playHandler({target: document.getElementsByClassName(playBtnClass)[0]});
+    }
+
     function initEventlistners() {
 
         document.getElementsByClassName([...containersMap.values()][1])[0].addEventListener('click', indicatorsHandler);
@@ -276,6 +284,9 @@ function createCarousel(slidesCount = 5, rotateInterval = 7000) {
 
         document.getElementsByClassName([...containersMap.values()][0])[0].addEventListener('mousedown', swipeStartHandler);
         document.getElementsByClassName([...containersMap.values()][0])[0].addEventListener('mouseup', swipeEndHandler);
+
+        document.getElementsByClassName([...containersMap.values()][0])[0].addEventListener('mouseenter', mouseEnterHandler);
+        document.getElementsByClassName([...containersMap.values()][0])[0].addEventListener('mouseleave', mouseLeaveHandler);
     }
 
     initCarousel();

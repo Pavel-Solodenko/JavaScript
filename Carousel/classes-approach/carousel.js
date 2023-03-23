@@ -27,7 +27,8 @@ class Carousel extends CarouselInitializator{
         this.nextSlideButtonHandlerWithThis = this.next.bind(this);
         this.prevSlideButtonHandlerWithThis = this.prev.bind(this);
         this.indicatorsHandlerWithThis = this._indicatorsHandler.bind(this);
-        
+        this.mouseEnterHandlerWithThis = this._mouseEnterHandler.bind(this);
+        this.mouseLeaveHandlerWithThis = this._mouseLeaveHandler.bind(this);
     }
 
     _showCurrentSlide () {
@@ -110,11 +111,22 @@ class Carousel extends CarouselInitializator{
         if (target.className === this.indicatorsClass) this._changeSlideOnPauseOrNot(undefined, target);
     }
 
+    _mouseEnterHandler() {
+        this.pause({target: document.getElementsByClassName(this.pauseBtnClass)[0]});
+    }
+
+    _mouseLeaveHandler() {
+        this.play({target: document.getElementsByClassName(this.playBtnClass)[0]});
+    }
+
     _initEventlistners () {
         document.getElementsByClassName([...this.containersMap.values()][1])[0].addEventListener('click', this.indicatorsHandlerWithThis);
         document.getElementsByClassName(this.pauseBtnClass)[0].addEventListener('click', this.pauseHandlerWithThis);
         document.getElementsByClassName(this.controlsContainersClasses[1])[0].addEventListener('click', this.nextSlideButtonHandlerWithThis);
         document.getElementsByClassName(this.controlsContainersClasses[0])[0].addEventListener('click', this.prevSlideButtonHandlerWithThis);
+
+        document.getElementsByClassName([...this.containersMap.values()][0])[0].addEventListener('mouseenter', this.mouseEnterHandlerWithThis);
+        document.getElementsByClassName([...this.containersMap.values()][0])[0].addEventListener('mouseleave', this.mouseLeaveHandlerWithThis);
     }
 
     init () {
