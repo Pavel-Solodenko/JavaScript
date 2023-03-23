@@ -100,15 +100,14 @@
 .indicators {
     position: absolute;
     z-index: 1;
-    left: 0;
+    left: 50%;
     bottom: 10%;
-    transform: translate(0%, -10%);
+    transform: translate(-50%, -10%);
     display: flex;
     justify-content: center;
     column-gap: 40px;
     margin: 0;
     padding: 0;
-    width: 100vw;
 }
 
 .indicators__item {
