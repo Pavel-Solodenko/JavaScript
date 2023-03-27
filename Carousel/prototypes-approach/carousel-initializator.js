@@ -61,7 +61,7 @@ CarouselInitializator.prototype._initSlides = function (slidesCount) {
         let slideElement = slidesContainer.appendChild(document.createElement('li'));
 
         slideElement.setAttribute('class', this.slideClass);
-        slideElement.setAttribute('style', `background-image: url(../assets/img/${this.imageNames + i}.png)`);
+        slideElement.setAttribute('style', `background-image: url(../assets/img/${this.imageNames + i}.png);background-size: 100% 100%;background-repeat: no-repeat;`);
         
         slideElement.innerHTML = `<a href="${this.linksArray[i - 1]}" class="slide-button" target="_blank"></a>`;
     }
