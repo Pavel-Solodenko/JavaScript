@@ -62,8 +62,8 @@ CarouselInitializator.prototype._initSlides = function (slidesCount) {
 
         slideElement.setAttribute('class', this.slideClass);
         
-        if (screen.availWidth < 100) {
-            slideElement.setAttribute('style', `background-image:url(../assets/img/${this.imageNames + i}.png);background-size: 100% 100%;background-repeat: no-repeat;background-position: center center;`);
+        if (screen.availWidth < 500) {
+            slideElement.setAttribute('style', `background-image:url(../assets/img/${this.imageNames + i}-mob.jpg);background-size: 100% 100%;background-repeat: no-repeat;background-position: center center;`);
         }
         else {
             slideElement.setAttribute('style', `background-image:url(../assets/img/${this.imageNames + i}.png);background-size: 100% 100%;background-repeat: no-repeat;background-position: center center;` );
