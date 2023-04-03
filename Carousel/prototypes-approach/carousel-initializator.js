@@ -58,7 +58,7 @@ CarouselInitializator.prototype.initCarousel = function () {
 
     if (window.matchMedia("(any-pointer:coarse)").matches) {
         let style = document.createElement('style');
-        style.innerHTML = '.slide-text-container{left:50%;bottom:17%;transform: translate(-50%, -17%);width:70%;}';
+        style.innerHTML = '.slide-text-container{left:50%;bottom:17%;transform: translate(-50%, -17%);width:70vw;padding:3vw;}';
         document.head.appendChild(style);
     }
 }

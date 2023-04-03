@@ -145,7 +145,7 @@
 }
 
 .slides__item {
-    font-size: 40px;
+    /* font-size: 40px; */
     padding: 40px;
     box-sizing: border-box;
     background: #333;
@@ -230,7 +230,7 @@
     padding: 1% 2% 1% 2%;
     text-decoration: none;
 
-    font-size: 45%;
+    font-size: 1em;
     font-family: 'Montserrat','Arial';
     font-weight: bold;
 
@@ -255,13 +255,13 @@
     bottom: 10%;
     transform: translate(-10%, -10%);
     
-    padding: 1%;
-    width: 25%;
+    padding: 1vw;
+    width: 25vw;
     height: 10%;
     text-align: center;
 
     display: inline-block;
-    font-size: 45%;
+    font-size: 1em;
     color: #ffffff;
     font-family: 'Montserrat','Arial';
     font-weight: bold;
@@ -269,7 +269,7 @@
 
     border: 0.1em solid #ffffff;
     border-radius: 10px;
-    letter-spacing: 0.1em;
+    /* letter-spacing: 0.1em; */
 }
 
 .slide-text-container:hover {
