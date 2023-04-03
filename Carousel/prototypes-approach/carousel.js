@@ -32,16 +32,35 @@ Carousel.prototype._initProperties = function () {
 Carousel.prototype._showCurrentSlide = function () {
     this.slidesListLive[this.currentIndex].setAttribute('class', this.activeSlideClass);
     this.indicatorsListLive[this.currentIndex].setAttribute('class', this.activeIndicatorsClass);
+
+    let style = document.getElementById(`slideText${this.currentIndex + 1}Style`);
+
+    let text = style.innerHTML.match(/100%.*;}}/)[0].match(/".*?"/)[0].replace(/"/g, '');
+
+    style.innerHTML += `#slideText${this.currentIndex + 1}::before {content: "${text}";animation: typing${this.currentIndex + 1} 2s 1;}`
 }
 
 Carousel.prototype._hideActiveSlideAndIndicator = function () {
+    let slideCur;
+
     this.slidesListLive.forEach( (slide) => {
-        if (slide.getAttribute('class') === this.activeSlideClass) slide.setAttribute('class', this.slideClass);
+        if (slide.getAttribute('class') === this.activeSlideClass) {
+            slide.setAttribute('class', this.slideClass);
+            slideCur = slide;
+        }
     });
 
     this.indicatorsListLive.forEach( (indicator) => {
         if (indicator.getAttribute('class') === this.activeIndicatorsClass) indicator.setAttribute('class', this.indicatorsClass);
     });
+    
+    for (let slide of slideCur.childNodes) {
+        if (slide.outerHTML.includes('slide-text-container')) {
+            let style = document.getElementById(slide.attributes[1].value + 'Style');
+            style.innerHTML = style.innerHTML.replace(/#.*?{.*}/, '');      
+        }
+    }
+    
 }
 
 Carousel.prototype._startCarousel = function() {

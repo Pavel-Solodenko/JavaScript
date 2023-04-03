@@ -37,6 +37,15 @@ function CarouselInitializator(slidesCount = 5, containerID = 'carousel', imageN
         [this.controlsContainersClasses[1], this.nextBtnClass],
         [this.controlsContainersClasses[2], this.pauseBtnClass],
     ]);
+
+    this.slidesTextArray = [
+        'The most popular programming language in the world.',
+        'Some text2',
+        'Some text3',
+        'Some text4',
+        'Some text5'
+    ]
+
 }
 
 CarouselInitializator.prototype.constructor = CarouselInitializator;
@@ -46,6 +55,12 @@ CarouselInitializator.prototype.initCarousel = function () {
     this._initSlides(this.slidesCount);
     this._initIndicators(this.slidesCount);
     this._initContorls();
+
+    if (window.matchMedia("(any-pointer:coarse)").matches) {
+        let style = document.createElement('style');
+        style.innerHTML = '.slide-text-container{left:50%;bottom:17%;transform: translate(-50%, -17%);width:70%;}';
+        document.head.appendChild(style);
+    }
 }
 
 CarouselInitializator.prototype._initContainers =  function () {
@@ -68,8 +83,10 @@ CarouselInitializator.prototype._initSlides = function (slidesCount) {
         else {
             slideElement.setAttribute('style', `background-image:url(../assets/img/${this.imageNames + i}.png);background-size: 100% 100%;background-repeat: no-repeat;background-position: center center;` );
         }
-
-        slideElement.innerHTML = `<a href="${this.linksArray[i - 1]}" class="slide-button" target="_blank"></a>`;
+        
+        slideElement.innerHTML = `<div class="slide-text-container" id="slideText${i}"></div><a href="${this.linksArray[i - 1]}" class="slide-button" target="_blank">LEARN NOW</a>`;
+        
+        this._initAnimations(this.slidesTextArray[i - 1], i);
     }
 
     this.slidesListLive = slidesContainer.childNodes;
@@ -100,4 +117,27 @@ CarouselInitializator.prototype._initContorls = function () {
         controlsContainer.appendChild(container);
     })
 
+}
+
+CarouselInitializator.prototype._initAnimations = function (text, i) {
+
+        let style = document.createElement('style');
+        style.setAttribute('id',`slideText${i}Style`);
+
+        let str = '@keyframes typing' + i + ' {' + '0% {content: "";}';
+        let pr = 100 / text.length;
+        let prIncrease = pr;
+
+        for (let i = 0; i < text.length; ++i) {
+            let res = '';
+
+            for (let j = 0; j <= i; ++j) res += text[j];
+
+            str += `${pr}% {content: "${res}";}`;
+            pr += prIncrease;
+        }
+
+        str += `100% {content: "${text}";}} `;
+        style.innerHTML = str;
+        document.head.appendChild(style);
 }
