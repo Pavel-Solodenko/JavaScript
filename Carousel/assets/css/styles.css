@@ -54,18 +54,6 @@
     cursor: pointer;
 }
 
-.controls__item.controls__prev:hover {
-    color: lightgray;
-    background: linear-gradient(to right, rgba(0, 187, 187, 0.8), rgba(0, 0, 0, 0));
-    text-shadow: 0 0 20px black ;
-}
-
-.controls__item.controls__next:hover {
-    color: lightgray;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 187, 187, 0.8));
-    text-shadow: 0 0 20px black ;
-}
-
 .controls div i {
     display: flex;
     justify-content: center;
@@ -92,11 +80,6 @@
     color: chocolate;
 }
 
-.fas.fa-pause:hover,.fas.fa-play:hover {
-    opacity: 1;
-    text-shadow: 0 0 20px black ;
-}
-
 .indicators {
     position: absolute;
     z-index: 1;
@@ -116,10 +99,6 @@
     border-radius: 20px 20px / 20px 20px;
     border: 3px solid white;
     cursor: pointer;
-}
-
-.indicators__item:hover {
-    background-color: lightgoldenrodyellow;
 }
 
 .indicators__item.active {
@@ -145,46 +124,10 @@
 }
 
 .slides__item {
-    /* font-size: 40px; */
     padding: 40px;
     box-sizing: border-box;
     background: #333;
 }
-
-/* .slides__item:nth-of-type(1) {
-    background: red;
-}
-
-.slides__item:nth-of-type(2) {
-    background: orange;
-}
-
-.slides__item:nth-of-type(3) {
-    background: green;
-}
-
-.slides__item:nth-of-type(4) {
-    background: blue;
-}
-
-.slides__item:nth-of-type(5) {
-    background: purple;
-} */
-
-/* .slide-button {
-    position: absolute;
-    left: 50%;
-    bottom: 15%;
-    transform: translate(-50%, -15%);
-
-    font-size: 30pt;
-    font-family: 'Alegreya Sans SC';
-    text-decoration: none;
-
-    color: white !important;
-    user-select: none;
-    opacity: 0;
-} */
 
 .slides__item.active a {
     opacity: 1;
@@ -240,13 +183,8 @@
 
     border: 0.1em solid #ffffff;
     border-radius: 10px;
-}
-
-.slide-button:hover {
-    background-color: #ffffff;
-    color: #000000;
-    border: 0.1em solid #000000;
-    transition: all 0.2s ease;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .slide-text-container {
@@ -269,9 +207,4 @@
 
     border: 0.1em solid #ffffff;
     border-radius: 10px;
-    /* letter-spacing: 0.1em; */
-}
-
-.slide-text-container:hover {
-    background-color: unset;
 }

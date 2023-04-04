@@ -46,6 +46,11 @@ function CarouselInitializator(slidesCount = 5, containerID = 'carousel', imageN
         'Some text5'
     ]
 
+    this.hoverStyles = '.controls__item.controls__next:hover {color: lightgray;background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 187, 187, 0.8));text-shadow: 0 0 20px black;} '
+        + '.fas.fa-pause:hover,.fas.fa-play:hover {opacity: 1;text-shadow: 0 0 20px black ;} '
+        + '.indicators__item:hover {background-color: lightgoldenrodyellow;} '
+        + '.slide-button:hover {background-color: #ffffff;color: #000000;border: 0.1em solid #000000;transition: all 0.2s ease;} '
+        + '.controls__item.controls__prev:hover {color: lightgray;background: linear-gradient(to right, rgba(0, 187, 187, 0.8), rgba(0, 0, 0, 0));text-shadow: 0 0 20px black ;} '
 }
 
 CarouselInitializator.prototype.constructor = CarouselInitializator;
@@ -61,6 +66,12 @@ CarouselInitializator.prototype.initCarousel = function () {
         style.innerHTML = '.slide-text-container{left:20%;bottom:calc(10% + (16px + 5.6px + (1% * 2)));width:70vw;padding:3vw;}';
         document.head.appendChild(style);
     }
+    else {
+        let style = document.createElement('style');
+        style.innerHTML = this.hoverStyles;
+        document.head.appendChild(style);
+    }
+    console.log(document.styleSheets[2])
 }
 
 CarouselInitializator.prototype._initContainers =  function () {
