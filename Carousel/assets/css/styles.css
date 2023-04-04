@@ -56,13 +56,13 @@
 
 .controls__item.controls__prev:hover {
     color: lightgray;
-    background: linear-gradient(to right, rgba(173, 255, 47, 0.8), rgba(0, 0, 0, 0));
+    background: linear-gradient(to right, rgba(0, 187, 187, 0.8), rgba(0, 0, 0, 0));
     text-shadow: 0 0 20px black ;
 }
 
 .controls__item.controls__next:hover {
     color: lightgray;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(173, 255, 47, 0.8));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 187, 187, 0.8));
     text-shadow: 0 0 20px black ;
 }
 
